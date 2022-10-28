@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <!-- Bài 1: Quản lý tuyển sinh -->
+    <div class="card">
+        <div class="card-header">
+            Quản lý tuyển sinh
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="">Điểm chuẩn của hội đồng</label>
+                <input id="diemChuan" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Điểm môn thứ 1</label>
+                <input id="diem_1" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Điểm môn thứ 2</label>
+                <input id="diem_2" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Điểm môn thứ 3</label>
+                <input id="diem_3" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Khu vực ưu tiên</label>
+                <label style="color:red;font-size:12px" for="">※Chọn "X" nếu không thuộc khu vực ưu tiên</label>
+                <select id="khuVuc" class="form-control">
+                    <option value="">Chọn khu vực</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="X">X</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="">Đối tượng ưu tiên</label>
+                <label style="color:red;font-size:12px" for="">※Chọn "0" nếu không thuộc khu vực ưu tiên</label>
+                <select id="doiTuong" class="form-control">
+                    <option value="">Chọn khu vực</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="0">0</option>
+                </select>
+            </div>
+        </div>
+        <button id="btnTuyenSinh" class="btn btn-success" onclick="tuyenSinh()">Kết quả</button>
+    </div>
+    <div id="kqTuyenSinh" class="card-footer text-muted"></div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- Bài 2: Tính tiền điện -->
+    <div class="card">
+        <div class="card-header">
+            Tính tiền điện
+        </div>
+        <div class="card-body">
+            <div class="form-group">
+                <label for="">Nhập tên người nộp tiền</label>
+                <input id="tenNguoiNop" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Nhập số điện tiêu thụ (kw)</label>
+                <input id="soKW" type="text" class="form-control">
+            </div>
+        </div>
+        <button id="btnTienDien" class="btn btn-success" onclick="kqDien()">Tính tiền</button>
+    </div>
+    <div id="tongTien" class="card-footer text-muted"></div>
+    </div>
+
+
+
+    <!-- Main JavaScript -->
+    <script src="./main.js"></script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

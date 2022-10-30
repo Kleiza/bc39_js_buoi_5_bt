@@ -137,3 +137,161 @@ function kqDien() {
 
     document.getElementById("tongTien").innerHTML = tongTien;
 }
+
+
+
+/**
+ * Bài tập 3 :  Tính thuế thu nhập cá nhân
+ * 
+ * Đầu vào:
+ *  Nhập họ tên người lao động : hoTen
+ *  Nhập tổng thu nhập : tongThuNhap
+ *  Nhập số người phụ thuộc : nguoiPhuThuoc
+ * 
+ * Xử lý:
+ *  Gọi thu nhập chịu thuế : chiuThue
+ *  -> chiuThue = tongThuNhap - 4000000 - nguoiPhuThuoc*1600000
+ *  
+ *  Tạo hàm kiểm tra và tính thuế suất với điều kiện sau:
+ *      Nếu chiuThue <= 60 -> thueSuat = 5%;
+ *      Nếu chiuThue >60 <= 120 -> thueSuat = 10;
+ *      Nếu chiuThue >120 <= 210 -> thueSuat = 15;
+ *      Nếu chiuThue >210 <= 384 -> thueSuat = 20;
+ *      Nếu chiuThue >384 <= 624 -> thueSuat = 25;
+ *      Nếu chiuThue >624 <= 960 -> thueSuat = 30;
+ *      Nếu chiuThue >960 -> thueSuat = 35;
+ *      -> return thueSuat
+ * 
+ *  Tạo hàm tính thuế thu nhập:
+ *      thueThuNhap = chiuThue * thueSuat/100;
+ * 
+ * Đầu ra:
+ *   Xuất kết quả thueThuNhap ra màn hình;     
+ */
+
+function checkThueSuat(a) {
+    var thueSuat = 0;
+
+    if (a <= 60000000) {
+        thueSuat = 5;
+    }
+    else if (a > 60000000 && a <= 120000000) {
+        thueSuat = 10;
+    }
+    else if (a > 120000000 && a <= 210000000) {
+        thueSuat = 15;
+    }
+    else if (a > 210000000 && a <= 384000000) {
+        thueSuat = 20;
+    }
+    else if (a > 384000000 && a <= 624000000) {
+        thueSuat = 25;
+    }
+    else if (a > 624000000 && a <= 960000000) {
+        thueSuat = 30;
+    }
+    else {
+        thueSuat = 35;
+    }
+    return thueSuat;
+}
+
+function tinhThueThuNhap() {
+    var tongThuNhap = document.getElementById("tongThuNhap").value * 1;
+    var nguoiPhuThuoc = document.getElementById("nguoiPhuThuoc").value * 1;
+    var chiuThue = tongThuNhap - 4000000 - (nguoiPhuThuoc * 1600000);
+
+    var kqThueSuat = checkThueSuat(chiuThue);
+
+    var result = "";
+    var currentFormat = Intl.NumberFormat("VN-vn");
+
+    var thueThuNhap = chiuThue * kqThueSuat / 100;
+
+    result += "<p>Thuế thu nhập cá nhân phải trả là: " + currentFormat.format(thueThuNhap) + "vnđ</p>";
+
+    document.getElementById("thueThuNhap").innerHTML = result;
+}
+
+
+
+/**
+ * Bài 4: Tính tiền cáp
+ * 
+ * Đầu vào:
+ *  Nhập mã khách hàng = customerID
+ *  Chọn Loại khách hàng = customerType
+ *  Số kết nối = connectionCount
+ *  Số kênh cao cấp = premiumChannel
+ * 
+ * Xử lý:
+ *  Kiểm tra xứ lý ẩn hiện số kết nối -> tạo hàm hiddenCheck
+ *      -> Tại html cho display:none là giá trị default
+ *      -> Nếu customerType = "ND"
+ *          hiddenCheck = display block;
+ *         else
+ *          hiddenCheck = display none;
+ * 
+ *  Viết hàm tính tổng tiền 
+ *      customerType ="ND"
+ *          processPrice = 4.5$;
+ *          servicePrice = 20.5$;
+ *          premiumChannelPrice = 7.5$ / channel;
+ * 
+ *      customerType = "DN"
+ *          processPrice = 15$;
+ *          servicePrice = 75$ /kết nối cho 10 kết nối đầu + 5$ * số kết nối (từ thứ 11 trở đi);
+ *          premiumChannelPrice = 50$ / channel;
+ * 
+ *  totalBill = processPrice + servicePrice + premiumChannelPrice
+ * 
+ *  Kết quả:
+ *   Xuất tổng tiền cáp totalBill
+ */
+
+
+// Ẩn hiện số kết nối 
+
+function hiddenCheck() {
+    if (document.getElementById("customerType").value == "DN") {
+        document.getElementById("hiddenContent").style.display = "block";
+    }
+    else{
+        document.getElementById("hiddenContent").style.display = "none";
+    }
+}
+
+function billCalculate(){
+    var processPrice = 0;
+    var servicePrice = 0;
+    var premiumChannelPrice = 0;
+    var connectionCountPrice = 0;
+
+    var premiumChannelCount = document.getElementById("premiumChannelCount").value*1;
+
+    if(customerType == "ND"){
+        processPrice = 4.5;
+        servicePrice = 20.5;
+        premiumChannelPrice = 7.5*premiumChannelCount;
+    }
+    else{
+        processPrice = 15;
+        premiumChannelPrice = 50*premiumChannelCount;
+
+        var connectionCount = document.getElementById("connectionCount").value*1;
+        if(connectionCount <= 10){
+            servicePrice = 75;
+        }
+        else{
+            servicePrice = 75 + (connectionCount - 10)*5;
+        }
+    }
+
+    var currentFormat = Intl.NumberFormat("en-US");
+    var result = "";
+
+    var totalBill = processPrice + servicePrice + premiumChannelPrice;
+    
+    result += "<p>Tổng số tiền cáp là: " + currentFormat.format(totalBill) + "$</p>";
+    document.getElementById("totalBill").innerHTML = result;
+}
